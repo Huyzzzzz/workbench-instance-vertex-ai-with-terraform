@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash#
 
 DIRECTORY="../workbench_instances/users_tfvars"  # Replace with your directory
 

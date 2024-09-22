@@ -1,0 +1,79 @@
+name: "Deploying workbence instance vertex AI with terraform"
+on:
+    pull_request:
+      types: 
+        - closed
+      branches:
+        - main
+  
+permissions:
+    contents: read
+
+jobs:
+    if_merged:
+      if: github.event.pull_request.merged == true
+      runs-on: ubuntu-latest
+      steps:
+      - run: |
+          echo The PR was merged
+    
+    generate-matrix:
+      runs-on: ubuntu-latest
+      outputs:
+        matrix: ${{ steps.generation-matrix.outputs.matrix }}
+      defaults:
+        run:
+          shell: bash
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - id: generation-matrix
+          name: Generation matrix
+          working-directory: ./scripts
+          run: |
+            chmod +x generation_matrix.sh
+            MATRIX=$(./generation_matrix.sh)
+            MATRIX_ESCAPED=$(echo "$MATRIX" | jq -c . | tr -d ' ') 
+            echo "$MATRIX_ESCAPED"    
+            echo $GITHUB_OUTPUT
+            echo "matrix=$MATRIX_ESCAPED" >> $GITHUB_OUTPUT
+    terraform:
+      needs: generate-matrix
+      name: Terraform
+      runs-on: ubuntu-latest
+      strategy:
+        matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }} #[user1, user2, user3, user4, user5, user6, user7, user8, user9, user10] 
+      defaults:
+        run:
+          shell: bash
+
+      steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+      # Authenticate to Google Cloud Project
+      - name: Google Auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_AUTH_CREDENTIALS }}' 
+      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terraform Init
+        run: terraform init -reconfigure
+        working-directory: ./workbench_instances
+      # Create and choosing workspace for each user
+      - name: Terraform Choose Workspace
+        working-directory: ./workbench_instances
+        run: terraform workspace new ${{ matrix.user_config }} || terraform workspace select ${{ matrix.user_config }}
+      - name: Terraform Apply
+        working-directory: ./workbench_instances
+        run: |
+          terraform apply -var-file=users/${{ matrix.user_config }} -auto-approve -lock=false
+
+
+
+    
+    

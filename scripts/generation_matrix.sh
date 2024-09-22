@@ -14,7 +14,6 @@ for file in "$DIRECTORY"/*; do
   output+="\"$filename\""
 done
 
-# Close the JSON array and object
 output+=']}'
 
 echo "$output"

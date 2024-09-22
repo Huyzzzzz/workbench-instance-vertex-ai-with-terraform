@@ -71,4 +71,4 @@ jobs:
       - name: Terraform Apply
         working-directory: ./workbench_instances
         run: |
-          terraform apply -var-file=users/${{ matrix.user_config }} -auto-approve -lock=false
+          terraform apply -var-file=users_tfvars/${{ matrix.user_config }} -auto-approve -lock=false

@@ -5,5 +5,8 @@
 *.tfstate
 *.tfstate.*
 
+# ignore all json files
+*.json
+
 # 
 .terraform.lock.hcl

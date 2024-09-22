@@ -17,5 +17,4 @@ done
 # Close the JSON array and object
 output+=']}'
 
-# Print the final JSON to the command line
 echo "$output"

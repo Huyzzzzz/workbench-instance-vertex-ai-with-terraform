@@ -72,8 +72,3 @@ jobs:
         working-directory: ./workbench_instances
         run: |
           terraform apply -var-file=users/${{ matrix.user_config }} -auto-approve -lock=false
-
-
-
-    
-    

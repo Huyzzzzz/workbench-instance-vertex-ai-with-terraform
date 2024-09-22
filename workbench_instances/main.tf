@@ -6,7 +6,7 @@ terraform {
 }
 
 data "google_compute_network" "workbench_instance_network" {
-  name = var.vpc_network_name
+  name    = var.vpc_network_name
   project = var.project_id
 }
 

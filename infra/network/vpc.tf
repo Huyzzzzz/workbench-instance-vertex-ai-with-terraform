@@ -1,7 +1,7 @@
 resource "google_compute_network" "vpc_network" {
-    project = var.project_id
-    name = var.vpc_network_name
-    auto_create_subnetworks = false
+  project                 = var.project_id
+  name                    = var.vpc_network_name
+  auto_create_subnetworks = false
 }
 
 # Create an IP address

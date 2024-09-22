@@ -15,11 +15,11 @@ variable "zone" {
 }
 
 variable "workbench_instance_prefix_name" {
-  type = string
+  type    = string
   default = "workbench-instance-vertex-ai"
 }
 variable "isDeleted" {
-  type = bool
+  type    = bool
   default = false
 }
 
@@ -34,22 +34,22 @@ variable "machine_type" {
 }
 
 variable "data_disk_type" {
-  type = string
+  type    = string
   default = "PD_STANDARD"
 }
 
 variable "data_disk_size_gb" {
-  type = number
+  type    = number
   default = 100
 }
 
 variable "boot_disk_type" {
-  type = string
+  type    = string
   default = "PD_STANDARD"
 }
 
 variable "boot_disk_size_gb" {
-  type = number
+  type    = number
   default = 150
 }
 

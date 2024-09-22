@@ -3,5 +3,5 @@ output "vpc_id" {
 }
 
 output "vpc_subnet_id" {
-    value = google_compute_subnetwork.workbench_subhet.id
+  value = google_compute_subnetwork.workbench_subhet.id
 }

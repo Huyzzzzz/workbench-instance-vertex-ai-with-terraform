@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIRECTORY="../workbench_instances/users_tfvars"  # Replace with your directory
+DIRECTORY="../src/workbench_instances/users_tfvars"  # Replace with your directory
 
 output='{"user_config": ['
 

@@ -11,7 +11,7 @@ terraform {
 }
 
 module "network" {
-  source           = "./network"
+  source           = "../../common_modules/network"
   module_name      = "workbench-network"
   vpc_network_name = var.vpc_network_name
   project_id       = var.project_id

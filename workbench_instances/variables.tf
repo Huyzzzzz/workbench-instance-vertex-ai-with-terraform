@@ -29,6 +29,10 @@ variable "instance_owner_email" {
   type        = string
 }
 
+variable "tfstate_prefix" {
+    type = string
+}
+
 variable "machine_type" {
   type    = string
   default = "e2-standard-2"

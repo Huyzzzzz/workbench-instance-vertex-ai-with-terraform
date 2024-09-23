@@ -6,7 +6,7 @@
 - Automate the instance creation steps using Github Actions.
 
 ## Infrastructure
-![Infrastructure](./infra/Infra.jpg)
+![Infrastructure](./src/infra/Infra.jpg)
 
 ## Key Components
 ### Vertex AI Workbench Instances

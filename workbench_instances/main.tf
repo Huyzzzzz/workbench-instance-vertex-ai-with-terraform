@@ -16,6 +16,7 @@ data "google_compute_subnetwork" "workbench_instance_subnetwork" {
 }
 
 resource "google_workbench_instance" "instance" {
+  count    = var.isDeleted 
   name     = join("-", [var.workbench_instance_prefix_name, "${replace(var.instance_owner_email, "@quanghuy.site", "")}"])
   location = var.zone
 

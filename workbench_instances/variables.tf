@@ -18,6 +18,7 @@ variable "workbench_instance_prefix_name" {
   type    = string
   default = "workbench-instance-vertex-ai"
 }
+
 variable "isDeleted" {
   type    = bool
   default = false

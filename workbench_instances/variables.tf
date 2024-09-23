@@ -6,12 +6,12 @@ variable "project_id" {
 
 variable "region" {
   type    = string
-  default = "asia-southeast1"
+  default = "asia-southeast2"
 }
 
 variable "zone" {
   type    = string
-  default = "asia-southeast1-a"
+  default = "asia-southeast2-a"
 }
 
 variable "workbench_instance_prefix_name" {

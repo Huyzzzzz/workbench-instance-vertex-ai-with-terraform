@@ -36,8 +36,8 @@ jobs:
             MATRIX=$(./generation_matrix.sh)
             MATRIX_ESCAPED=$(echo "$MATRIX" | jq -c . | tr -d ' ') 
             echo "$MATRIX_ESCAPED"    
-            echo $GITHUB_OUTPUT
             echo "matrix=$MATRIX_ESCAPED" >> $GITHUB_OUTPUT
+            echo $GITHUB_OUTPUT
     terraform:
       needs: generate-matrix
       name: Terraform

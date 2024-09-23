@@ -2,7 +2,6 @@
 
 DIRECTORY="../workbench_instances/users_tfvars"  # Replace with your directory
 
-# Start the JSON object
 output='{"user_config": ['
 
 for file in "$DIRECTORY"/*; do
